@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightPi.Server", "LightPi\Server\LightPi.Server.csproj", "{ADC498F1-5457-4C93-BDEA-E44277468791}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightPi.Client", "LightPi\Client\LightPi.Client.csproj", "{EA995119-B624-48A8-8408-C736AC4612F8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightPi.Shared", "LightPi\Shared\LightPi.Shared.csproj", "{44EAF0F2-AFD6-483D-AF9F-E26F14DE7AEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightPi.Data", "LightPi.Data\LightPi.Data.csproj", "{DB22ECD9-A2FC-4099-87C7-944FA0C86B50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADC498F1-5457-4C93-BDEA-E44277468791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADC498F1-5457-4C93-BDEA-E44277468791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADC498F1-5457-4C93-BDEA-E44277468791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADC498F1-5457-4C93-BDEA-E44277468791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA995119-B624-48A8-8408-C736AC4612F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA995119-B624-48A8-8408-C736AC4612F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA995119-B624-48A8-8408-C736AC4612F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA995119-B624-48A8-8408-C736AC4612F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44EAF0F2-AFD6-483D-AF9F-E26F14DE7AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44EAF0F2-AFD6-483D-AF9F-E26F14DE7AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44EAF0F2-AFD6-483D-AF9F-E26F14DE7AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44EAF0F2-AFD6-483D-AF9F-E26F14DE7AEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB22ECD9-A2FC-4099-87C7-944FA0C86B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB22ECD9-A2FC-4099-87C7-944FA0C86B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB22ECD9-A2FC-4099-87C7-944FA0C86B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB22ECD9-A2FC-4099-87C7-944FA0C86B50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {20BCDEF0-6F32-430F-8A93-286D5C6B5E9A}
+	EndGlobalSection
+EndGlobal

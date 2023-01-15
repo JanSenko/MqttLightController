@@ -1,0 +1,108 @@
+﻿@page "/Light"
+@page "/Light/{id:int}"
+@inject ILightsService LightService
+
+@if (Id == null)
+{
+    <PageTitle>Create a new light configuration</PageTitle>
+    <h3>Create a new light configuration</h3>
+}
+else
+{
+    <PageTitle>Edit @light.Name</PageTitle>
+    <h3>Edit @light.Name</h3>
+}
+
+<EditForm Model="light" OnSubmit="HandleSubmit">
+    <div>
+        <label for="name">Name</label>
+        <InputText id="name" @bind-Value="light.Name" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="route">Route</label>
+        <InputText id="route" @bind-Value="light.Route" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="description">Description</label>
+        <InputText id="description" @bind-Value="light.Description" class="form-control"></InputText>
+    </div>
+    <div>
+        <label for="isDimmable">Light should be dimmable</label>
+        <InputCheckbox id="isDimmable" @bind-Value="light.IsDimmable"></InputCheckbox>
+        @if (light.IsDimmable)
+        {
+            <div>
+                <label for="minBrightness">Minimum brightness</label>
+                <InputNumber id="minBrightness" @bind-Value="light.MinBrightness" class="form-control"></InputNumber>
+            </div>
+
+            <div>
+                <label for="maxBrightness">Maximum brightness</label>
+                <InputNumber id="maxBrightness" @bind-Value="light.MaxBrightness" class="form-control"></InputNumber>
+            </div>
+        }
+    </div>
+    <div>
+        <label for="isCCT">Light supports CCT</label>
+        <InputCheckbox id="isCCT" @bind-Value="light.IsCCT"></InputCheckbox>
+        @if (light.IsCCT)
+        {
+            <div>
+                <label for="minCCT">Minimum color Temperature</label>
+                <InputNumber id="minCCT" @bind-Value="light.MinColorTemp" class="form-control"></InputNumber>
+            </div>
+
+            <div>
+                <label for="maxCCT">Maximum color Temperature</label>
+                <InputNumber id="maxCCT" @bind-Value="light.MaxColorTemp" class="form-control"></InputNumber>
+            </div>
+        }
+    </div>
+    <div>
+        <label for="isRGB">Light supports RGB</label>
+        <InputCheckbox id="isRGB" @bind-Value="light.IsRGB" ></InputCheckbox>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">@buttonText</button>
+    <button type="button" class="btn btn-danger" @onclick="DeletelightConfiguration">Delete Light</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    string buttonText = string.Empty;
+
+    LightPi.Shared.Light light = new LightPi.Shared.Light { };
+
+    protected override async Task OnInitializedAsync()
+    {
+        buttonText = Id == null ? "Save New Light Configuration" : "Update Light";
+        await LightService.GetLights();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Id != null)
+        {
+            light = await LightService.GetSingleLight((int)Id);
+        }
+    }
+
+    async Task HandleSubmit()
+    {
+        if (Id == null)
+        {
+            await LightService.CreateLight(light);
+        }
+        else
+        {
+            await LightService.UpdateLight(light);
+        }
+    }
+
+    async Task DeletelightConfiguration()
+    {
+        await LightService.DeleteLight(light.LightID);
+    }
+}

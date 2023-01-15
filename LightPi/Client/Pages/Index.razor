@@ -1,0 +1,87 @@
+﻿@page "/"
+@page "/Lights"
+@using LightPi.Shared
+@inject ILightsService LightConfigurationService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Light Configuration</PageTitle>
+
+<h1>Lights</h1>
+
+<ul>
+
+    @foreach (var light in LightConfigurationService.Lights)
+    {
+        <li>
+            <h4>@light.Name</h4>
+            <p>Route: @light.Route</p>
+            <p>Description: @light.Description</p>
+            <div>
+                <lablel>Is Dimmable</lablel>
+                <label class="switch">
+                    <input type="checkbox" disabled="disabled" @bind="light.IsDimmable">
+                    <span class="slider round">
+                    </span>
+                </label>
+                @if (light.IsDimmable)
+                {
+                    <div>
+                        <p>Minimum Brightness: @light.MinBrightness</p>
+                        <p>Maximum Brightness: @light.MaxBrightness</p>
+                    </div>
+                }
+            </div>
+            <div>
+                <lablel>Supports CCT</lablel>
+                <label class="switch">
+                    <input type="checkbox" disabled="disabled" @bind="light.IsCCT">
+                    <span class="slider round">
+                    </span>
+                </label>
+                @if (light.IsCCT)
+                {
+                    <div>
+                        <p>Minimum color temp: @light.MinColorTemp</p>
+                        <p>Maximum color temp: @light.MaxColorTemp</p>
+
+                    </div>
+                }
+            </div>
+            <lablel>Supports RGB</lablel>
+            <label class="switch">
+                <input type="checkbox" disabled="disabled" @bind="light.IsRGB">
+                <span class="slider round">
+                </span>
+            </label>
+            <br>
+            <button class="btn btn-primary" @onclick="(() => SetLightSet(light.LightID,true))">Turn light on</button>
+            <button class="btn btn-primary" @onclick="(() => SetLightSet(light.LightID,false))">Turn light off</button>
+            <button class="btn btn-primary" @onclick="(() => ShowLightConfiguration(light.LightID))"><i class="oi oi-pencil"></i></button>
+        </li>
+    }
+</ul>
+
+<button class="btn btn-primary" @onclick="CreateNewLightConfiguration">Create New Light Configuration</button>
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await LightConfigurationService.GetLights();
+    }
+
+    void ShowLightConfiguration(int id)
+    {
+        NavigationManager.NavigateTo($"Light/{id}");
+    }
+
+    async Task SetLightSet(int id, bool state)
+    {
+        await LightConfigurationService.SetLightState(id,state);
+    }
+
+    void CreateNewLightConfiguration()
+    {
+        NavigationManager.NavigateTo("/Light");
+    }
+}
