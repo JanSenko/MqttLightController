@@ -2,7 +2,7 @@ using LightPi.Data;
 using LightPi.Server.Options;
 using Microsoft.EntityFrameworkCore;
 
-namespace LightPi
+namespace LightPi.Server
 {
     public class Program
     {

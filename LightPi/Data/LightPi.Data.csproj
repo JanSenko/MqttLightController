@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LightPi\Shared\LightPi.Shared.csproj" />
+    <ProjectReference Include="..\Shared\LightPi.Shared.csproj" />
   </ItemGroup>
 
 </Project>
